@@ -14,13 +14,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "WheeledVehicle.h"
 #include "Vehicle.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
+class UPhysicalMaterial;
 
 UCLASS()
-class TEST_API AVehicle : public APawn
+class TEST_API AVehicle : public AWheeledVehicle
 {
 	GENERATED_BODY()
 
@@ -42,8 +44,10 @@ public:
 	void MoveForward(float Val);
 	void MoveRight(float Val);
 
-	//static const FName LookUpBinding;
-	//static const FName LookRightBinding;
+	void UpdatePhysicsMaterial();
+
+	static const FName LookUpBinding;
+	static const FName LookRightBinding;
 
 private:
 	UPROPERTY(EditAnywhere)
@@ -54,4 +58,13 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere)
+		bool bInReverseGear;
+
+	UPROPERTY(EditAnywhere)
+		bool bIsLowFriction;
+
+	UPhysicalMaterial* NonSlipperyMaterial;
+	UPhysicalMaterial* SlipperyMaterial;
 };
