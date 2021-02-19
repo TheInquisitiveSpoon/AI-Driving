@@ -56,19 +56,19 @@ AVehicle::AVehicle()
 
 	Vehicle4W->WheelSetups[0].WheelClass = UTestWheelFront::StaticClass();
 	Vehicle4W->WheelSetups[0].BoneName = FName("PhysWheel_FL");
-	Vehicle4W->WheelSetups[0].AdditionalOffset = FVector(0.f, -8.f, 0.f);
+	Vehicle4W->WheelSetups[0].AdditionalOffset = FVector(0.f, -16.f, 0.f);
 
 	Vehicle4W->WheelSetups[1].WheelClass = UTestWheelFront::StaticClass();
 	Vehicle4W->WheelSetups[1].BoneName = FName("PhysWheel_FR");
-	Vehicle4W->WheelSetups[1].AdditionalOffset = FVector(0.f, 8.f, 0.f);
+	Vehicle4W->WheelSetups[1].AdditionalOffset = FVector(0.f, 16.f, 0.f);
 
 	Vehicle4W->WheelSetups[2].WheelClass = UTestWheelRear::StaticClass();
 	Vehicle4W->WheelSetups[2].BoneName = FName("PhysWheel_BL");
-	Vehicle4W->WheelSetups[2].AdditionalOffset = FVector(0.f, -8.f, 0.f);
+	Vehicle4W->WheelSetups[2].AdditionalOffset = FVector(0.f, -16.f, 0.f);
 
 	Vehicle4W->WheelSetups[3].WheelClass = UTestWheelRear::StaticClass();
 	Vehicle4W->WheelSetups[3].BoneName = FName("PhysWheel_BR");
-	Vehicle4W->WheelSetups[3].AdditionalOffset = FVector(0.f, 8.f, 0.f);
+	Vehicle4W->WheelSetups[3].AdditionalOffset = FVector(0.f, 16.f, 0.f);
 
 	Vehicle4W->MinNormalizedTireLoad = 0.0f;
 	Vehicle4W->MinNormalizedTireLoadFiltered = 0.2f;
