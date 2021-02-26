@@ -35,8 +35,9 @@ AVehicle::AVehicle()
 	// Creates folder for the spring arm.
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
 	SpringArm->SetupAttachment(RootComponent);
-	SpringArm->SetRelativeLocation(FVector(0.0f, 0.0f, 58.0f));
 	SpringArm->TargetArmLength = 360.0f;
+	SpringArm->SetRelativeLocation(FVector(0.0f, 0.0f, 58.0f));
+	SpringArm->AddRelativeRotation(FRotator(-10.0f, 0.0f, 0.0f));
 	SpringArm->bInheritPitch = true;
 	SpringArm->bInheritYaw = true;
 	SpringArm->bInheritRoll = true;
@@ -112,7 +113,6 @@ AVehicle::AVehicle()
 void AVehicle::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
