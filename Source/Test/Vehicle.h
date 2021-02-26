@@ -2,8 +2,9 @@
 
 //	TO DO:
 //
-//
-//
+//	Fix animation loading
+//	Fix steering and control
+//	
 
 //	USEFUL CODE:
 //

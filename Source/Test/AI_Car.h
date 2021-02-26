@@ -1,10 +1,20 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+//	TO DO:
+//
+//	Link Blackboard
+//	Link behaviour tree
+//
+
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "WheeledVehicle.h"
+
+#include "BehaviorTree/BehaviorTreeComponent.h"
+#include "Perception/AIPerceptionComponent.h"
+
 #include "AI_Car.generated.h"
 
 class UPhysicalMaterial;

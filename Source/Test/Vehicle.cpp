@@ -1,5 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+//	Venicle.h - Basic Vehicle Class
 
 #include "Vehicle.h"
 #include "GameFrameWork/SpringArmComponent.h"
