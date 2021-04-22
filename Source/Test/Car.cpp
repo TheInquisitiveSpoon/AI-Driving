@@ -68,14 +68,14 @@ ACar::ACar()
 	bInReverseGear = false;
 }
 
-// Called when the game starts or when spawned
+// Called when the game starts or when spawned.
 void ACar::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
+// Called every frame.
 void ACar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -84,11 +84,13 @@ void ACar::Tick(float DeltaTime)
 	bInReverseGear = GetVehicleMovementComponent()->GetCurrentGear() < 0;
 }
 
+// Sets throlle value for actor.
 void ACar::MoveForward(float Val)
 {
 	GetVehicleMovementComponent()->SetThrottleInput(Val);
 }
 
+// Sets steering value for actor.
 void ACar::MoveRight(float Val)
 {
 	GetVehicleMovementComponent()->SetSteeringInput(Val);

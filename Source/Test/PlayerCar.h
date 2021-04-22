@@ -22,18 +22,20 @@ public:
 	/** Default UObject constructor. */
 	APlayerCar();
 
-	/**	Binds functionality to input */
+	/**	Binds functionality to input. */
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	/** Binding for vertical camera control. */
 	static const FName LookUpBinding;
+
 	/** Binding for horizontal camera control. */
 	static const FName LookRightBinding;
 
 private:
 	/** The Spring arm associated with this PlayerCar. */
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere) 
 		USpringArmComponent* SpringArm;
+
 	/** The main Camera associated with this PlayerCar. */
 	UPROPERTY(EditAnywhere)
 		UCameraComponent* Camera;
