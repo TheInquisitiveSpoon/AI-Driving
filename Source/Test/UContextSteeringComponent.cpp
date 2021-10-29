@@ -53,14 +53,21 @@ void UContextSteeringComponent::FillInterestMap()
 
 	//GetOwner()->
 	//FVector DesiredLocation;
-	//DesiredLocation.ToDirectionAndLength(Targets[CurrentChaseTarget]->GetActorLocation(), 1.0f);
+	//DesiredLocation.ToDirectionAndLength(Targets[CurrentChaseTarget]->GetActorLocation(), 1.0f); 
 
-	FVector CarLocation = GetOwner()->GetActorLocation();
-	FVector TargetLocation = Targets[CurrentChaseTarget]->GetActorLocation();
-	DrawDebugLine(GetWorld(), CarLocation, TargetLocation, FColor::Blue);
-	TargetDirectionDegrees = UKismetMathLibrary::FindLookAtRotation(CarLocation, TargetLocation).Yaw;
 
-	//FVector FacingDirection = Targets[CurrentChaseTarget]->GetActorLocation() - GetOwner()->GetActorLocation();
+
+	//FVector CarLocation = GetOwner()->GetActorLocation();
+	//FVector TargetLocation = Targets[CurrentChaseTarget]->GetActorLocation();
+	//DrawDebugLine(GetWorld(), CarLocation, TargetLocation, FColor::Blue);
+	//TargetDirectionDegrees = UKismetMathLibrary::FindLookAtRotation(CarLocation, TargetLocation).Yaw;
+
+	FVector FacingVector = GetOwner()->GetActorForwardVector();
+	FVector DirectionVector = Targets[CurrentChaseTarget]->GetActorLocation() - GetOwner()->GetActorLocation();
+	TargetDirectionDegrees = GetAngleBetweenVectors(FacingVector, DirectionVector);
+	DrawDebugLine(GetWorld(), GetOwner()->GetActorLocation(), Targets[CurrentChaseTarget]->GetActorLocation(), FColor::Blue);
+
+	//FVector FacingDirection = Targets[CurrentChaseTarget]->GetActorLocation() - GetOwner()->GetActorLocation();n
 	//FVector PositionOnCircle = FacingDirection * 1.0f;
 	//float targetRadians = FMath::Atan2(PositionOnCircle.Z - GetOwner()->GetActorLocation().Z, PositionOnCircle.X - GetOwner()->GetActorLocation().X);
 	//TargetDirectionDegrees = FMath::RadiansToDegrees(targetRadians);
@@ -70,4 +77,13 @@ void UContextSteeringComponent::LoadTargetsWithTag(const FName& Tag)
 {
 	TArray<CheckPoint*> Checkpoints;
 	//GetAllActorsOfClass();
+}
+
+float UContextSteeringComponent::GetAngleBetweenVectors(FVector A, FVector B)
+{
+	//float Dot = FVector::DotProduct(A, B);
+	//float CosTheta = Dot / (A.Size() * B.Size());
+	//return FMath::RadiansToDegrees(FMath::Acos(CosTheta));
+
+	float 
 }

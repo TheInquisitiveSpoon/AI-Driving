@@ -44,6 +44,8 @@ private:
 
 	void FillInterestMap();
 
+	float GetAngleBetweenVectors(FVector A, FVector B);
+
 	int CurrentChaseTarget;
 
 	/** How many directions to scan. */

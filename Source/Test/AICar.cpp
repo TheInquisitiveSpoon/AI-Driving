@@ -48,7 +48,9 @@ void AAICar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	MoveForward(1.0f);
+	UE_LOG(LogTemp, Warning, TEXT("Degrees: %f"), ContextSteering->TargetDirectionDegrees);
+
+	/*MoveForward(1.0f);*/
 	if (ContextSteering->TargetDirectionDegrees > 0.0f)
 	{
 		MoveRight(1.0f);
