@@ -29,6 +29,8 @@ public:
 	/** Function to change the number of rays used for context steering. */
 	void SetNumberOfRays(const int& Value);
 
+	float DistanceToTarget();
+
 	UPROPERTY(VisibleAnywhere, Category = "Chase")
 	float TargetDirectionDegrees;
 
@@ -44,7 +46,7 @@ private:
 
 	void FillInterestMap();
 
-	float GetAngleBetweenVectors(FVector A, FVector B);
+	FVector Normalise(const FVector& vector);
 
 	int CurrentChaseTarget;
 

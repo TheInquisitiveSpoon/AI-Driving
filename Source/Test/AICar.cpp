@@ -48,16 +48,22 @@ void AAICar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("Degrees: %f"), ContextSteering->TargetDirectionDegrees);
+	MoveForward(1.0f);
+	MoveRight(ContextSteering->TargetDirectionDegrees);
 
-	/*MoveForward(1.0f);*/
-	if (ContextSteering->TargetDirectionDegrees > 0.0f)
+	if (ContextSteering->TargetDirectionDegrees > -1.0f && ContextSteering->TargetDirectionDegrees < 1.0f)
 	{
-		MoveRight(1.0f);
+		MoveForward(1.0f);
 	}
-	else if (ContextSteering->TargetDirectionDegrees < 0.0f)
+	else
 	{
-		MoveRight(-1.0f);
+		MoveForward(0.5f);
+	}
+
+	if (ContextSteering->DistanceToTarget() < 2000.0f)
+	{
+		MoveForward(0.0f);
+		UE_LOG(LogTemp, Warning, TEXT("SLOWING DOWN!"));
 	}
 
 	// Check if car is in reverse gear.

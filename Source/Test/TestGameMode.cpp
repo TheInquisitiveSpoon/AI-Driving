@@ -4,5 +4,4 @@
 
 ATestGameMode::ATestGameMode()
 {
-
 }

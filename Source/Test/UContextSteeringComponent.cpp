@@ -48,42 +48,51 @@ void UContextSteeringComponent::SetNumberOfRays(const int& Value)
 
 void UContextSteeringComponent::FillInterestMap()
 {
-	//FVector DotProduct;
-	//DotProduct.DotProduct(GetOwner()->GetActorLocation(), Targets[CurrentChaseTarget]->GetActorLocation());
+	const FVector xAxis = Normalise(GetOwner()->GetActorRightVector());
+	const FVector zAxis = Normalise(GetOwner()->GetActorForwardVector());
+	const FVector target = Normalise(Targets[CurrentChaseTarget]->GetActorLocation() - GetOwner()->GetActorLocation());
 
-	//GetOwner()->
-	//FVector DesiredLocation;
-	//DesiredLocation.ToDirectionAndLength(Targets[CurrentChaseTarget]->GetActorLocation(), 1.0f); 
+	if (FVector::DotProduct(xAxis, target) > 0)
+	{
+		TargetDirectionDegrees = FMath::Acos(FVector::DotProduct(zAxis, target));
+	}
+	else
+	{
+		TargetDirectionDegrees = -FMath::Acos(FVector::DotProduct(zAxis, target));
+	}
 
-
-
-	//FVector CarLocation = GetOwner()->GetActorLocation();
-	//FVector TargetLocation = Targets[CurrentChaseTarget]->GetActorLocation();
-	//DrawDebugLine(GetWorld(), CarLocation, TargetLocation, FColor::Blue);
-	//TargetDirectionDegrees = UKismetMathLibrary::FindLookAtRotation(CarLocation, TargetLocation).Yaw;
-
-	FVector FacingVector = GetOwner()->GetActorForwardVector();
-	FVector DirectionVector = Targets[CurrentChaseTarget]->GetActorLocation() - GetOwner()->GetActorLocation();
-	TargetDirectionDegrees = GetAngleBetweenVectors(FacingVector, DirectionVector);
 	DrawDebugLine(GetWorld(), GetOwner()->GetActorLocation(), Targets[CurrentChaseTarget]->GetActorLocation(), FColor::Blue);
 
-	//FVector FacingDirection = Targets[CurrentChaseTarget]->GetActorLocation() - GetOwner()->GetActorLocation();n
-	//FVector PositionOnCircle = FacingDirection * 1.0f;
-	//float targetRadians = FMath::Atan2(PositionOnCircle.Z - GetOwner()->GetActorLocation().Z, PositionOnCircle.X - GetOwner()->GetActorLocation().X);
-	//TargetDirectionDegrees = FMath::RadiansToDegrees(targetRadians);
+	UE_LOG(LogTemp, Warning, TEXT("Distance: %f"), FVector::Distance(GetOwner()->GetActorLocation(), Targets[CurrentChaseTarget]->GetActorLocation()));
+
+	if (DistanceToTarget() < 1000.0f)
+	{
+		if (CurrentChaseTarget == Targets.Num() - 1)
+		{
+			CurrentChaseTarget = 0;
+		}
+		else
+		{
+			CurrentChaseTarget++;
+		}
+	}
+}
+
+float UContextSteeringComponent::DistanceToTarget()
+{
+	return FVector::Distance(GetOwner()->GetActorLocation(), Targets[CurrentChaseTarget]->GetActorLocation());
+}
+
+FVector UContextSteeringComponent::Normalise(const FVector& vector)
+{
+	const float x = vector.X / vector.Size();
+	const float y = vector.Y / vector.Size();
+	const float z = vector.Z / vector.Size();
+
+	return FVector(x, y, z);
 }
 
 void UContextSteeringComponent::LoadTargetsWithTag(const FName& Tag)
 {
 	TArray<CheckPoint*> Checkpoints;
-	//GetAllActorsOfClass();
-}
-
-float UContextSteeringComponent::GetAngleBetweenVectors(FVector A, FVector B)
-{
-	//float Dot = FVector::DotProduct(A, B);
-	//float CosTheta = Dot / (A.Size() * B.Size());
-	//return FMath::RadiansToDegrees(FMath::Acos(CosTheta));
-
-	float 
 }
